@@ -1,5 +1,24 @@
-# AgMate
-DOI: 10.5281/zenodo.6635226
-HTML: <a href="https://doi.org/10.5281/zenodo.6635226"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6635226.svg" alt="DOI"></a>
-Markdown: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6635226.svg)](https://doi.org/10.5281/zenodo.6635226)
-Target URL - https://doi.org/10.5281/zenodo.6635226
+# AgMate: An Optimal Mating Software
+
+`AgMate` is a R ShinyApp that utilizes the Differential Evolution algorithm for the optimization of mate pair decisions and contributions for monoecious diploid species like _Pinus taeda_. 
+
+AgMate is a multi-functional software able to 
+
+1. Process pedigree information
+
+2. Complete and order pedigrees
+
+3. Generate numerator relationship matrices
+
+4. Optimize selection and contribution of candidates
+
+5. Design optimal matings between candidates
+
+6. Provide visualization of results
+
+
+## Please cite [Goda (2022)](https://doi.org/10.5281/zenodo.6635226) in working papers and published papers that use `AgMate`.
+
+Goda, Khushi. (2022). AgMate: Optimal Mating for Monoecious Species (v2.0). Zenodo.
+[https://doi.org/10.5281/zenodo.6635226](https://doi.org/10.5281/zenodo.6635226)
+
