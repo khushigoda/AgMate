@@ -17,6 +17,9 @@ AgMate is a multi-functional software able to
 6. Provide visualization of results
 
 
+## ShinyApp: [https://khushigoda.shinyapps.io/AgMate/](https://khushigoda.shinyapps.io/AgMate/)
+
+
 ## Please cite [Goda (2022)](https://doi.org/10.5281/zenodo.6635226) in working papers and published papers that use `AgMate`.
 
 Goda, Khushi. (2022). AgMate: Optimal Mating for Monoecious Species (v2.0). Zenodo.
