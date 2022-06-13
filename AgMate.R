@@ -80,7 +80,7 @@ checkFiles_part1 <- function(selection_list, reference_list, x) {
   }
   #case x = 2 is when both selection and reference files are given
   if (x==2) {
-    if (ncol(reference_list) < 4) {
+    if (ncol(reference_list) < 3) {
       return(error2)
     }
     else if (!(ncol(selection_list) == 1 | ncol(selection_list) >= 4)) {
@@ -126,7 +126,7 @@ generate_AMatrix <- function(selection_list,reference_list,progress, output) {
   names(reference_list)[1] <- "CandidateID"
   names(reference_list)[2] <- "Parent1"
   names(reference_list)[3] <- "Parent2"
-  names(reference_list)[4] <- "Index"
+  #names(reference_list)[4] <- "Index"
   
   selection_list$Parent1[which(selection_list$Parent1==0)] <- NA
   selection_list$Parent2[which(selection_list$Parent2==0)] <- NA
@@ -242,7 +242,7 @@ generate_AMatrix <- function(selection_list,reference_list,progress, output) {
 }
 
 ###########################################################################
-### Functio to calculcate inbreeding and coacnestry coefficients        ###
+### Function to calculcate inbreeding and coacnestry coefficients       ###
 ###########################################################################
 
 calculate_coefficients <- function (list_A, message_string) {
@@ -499,16 +499,16 @@ optimal_mating_solution <- function (x)
 }
 
 ###########################################################################
-### Function to find if male and female are related or not              ###
-### Arguments - male name, female name, A matrix of progeny, cutoff     ###
+### Function to find if both parents are related or not                 ###
+### Args - first parent, second parent, A matrix of progeny, cutoff     ###
 ### Returns 0 if related and 1 if not related                           ###
 ###########################################################################
 
-unrelated <- function (male_name, female_name, AMatrix, amatrixcutoff)
+unrelated <- function (first_parent, second_parent, AMatrix, amatrixcutoff)
 {
   a_matrix_cutoff <- amatrixcutoff
-  col <- which(colnames(AMatrix)==male_name)
-  row <- which(colnames(AMatrix)==female_name)
+  col <- which(colnames(AMatrix)==first_parent)
+  row <- which(colnames(AMatrix)==second_parent)
   #check if that value is 0 (unrelated) or not (related)
   if (AMatrix[row,col]/2 > a_matrix_cutoff)
     return(0)
@@ -812,7 +812,7 @@ ui <- dashboardPage(
         ),
         fluidRow(
           box(
-            title = "AgMate : Optimal Mating for Monoecious Species by Khushi Goda",
+            title = "AgMate : An Optimal Mating Software by Khushi Goda",
             width = 12 
           )
         )
@@ -907,7 +907,7 @@ ui <- dashboardPage(
         ),
         fluidRow(
           box(
-            title = "AgMate : Optimal Mating for Monoecious Species by Khushi Goda",
+            title = "AgMate : An Optimal Mating Software by Khushi Goda",
             width = 12 
           )
         )
@@ -955,7 +955,7 @@ ui <- dashboardPage(
              ),
              fluidRow(
                box(
-                 title = "AgMate : Optimal Mating for Monoecious Species by Khushi Goda",
+                 title = "AgMate : An Optimal Mating Software by Khushi Goda",
                  width = 12 
                )
              )
@@ -1139,6 +1139,10 @@ server <- function(input, output) {
     }
   )
   
+  ###########################################################################
+  ### Code for generating Index Chart                                     ###
+  ###########################################################################
+  
   part3_reactive_1 <- eventReactive(input$part3_button,{
       
     if (is.null(input$file5$datapath)) {
@@ -1170,10 +1174,7 @@ server <- function(input, output) {
       Mean = mean(Index)
     ) 
     
-    ###################################################################################################
-    # generate grouped histogram for candidate list and mating list provided by OMM
-    
-    # density plot
+    # grouped density plot
     glo_plot1 <<- ggplot(dat.index, aes(x=Index, color=List, fill=List)) + theme_classic()+
       geom_density(aes(y=..count..), alpha=.3)+
       geom_vline(data=sum.index, aes(xintercept=Mean,linetype=List, color=List),size=.8)+
@@ -1198,7 +1199,11 @@ server <- function(input, output) {
     if (input$part3_button)
       part3_reactive_1()
   })
-      
+    
+  ###########################################################################
+  ### Code for generating Inbreeding and Coancestry Chart                 ###
+  ###########################################################################
+    
   part3_reactive_2 <- eventReactive(input$part3_button,{
       
      if (is.null(input$file5$datapath)) {
@@ -1212,8 +1217,6 @@ server <- function(input, output) {
        mating_list <- read.csv(input$file6$datapath, check.names = FALSE)   
      }
      
-    
-    
      #candidate file stats
      selection_list <- selection_list
      reference_list <- selection_list
@@ -1267,8 +1270,6 @@ server <- function(input, output) {
      #computing the population inbreeding coefficient and the group coancestry.
      calculate_coefficients(selection_list_A, "Selection File")
      
-     
-     
      #mating file stats
      selection_list <- mating_list
      reference_list <- selection_list
@@ -1321,9 +1322,6 @@ server <- function(input, output) {
      
      #computing the population inbreeding coefficient and the group coancestry.
      calculate_coefficients(selection_list_A, "Mating List File")
-     
-     
-     
      
      # dataframe for inbreeding and coancestry
      inco <- data.frame(List = c("Candidate list","Mating list"),
