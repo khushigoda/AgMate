@@ -25,3 +25,5 @@ AgMate is a multi-functional software able to
 Goda, Khushi and Isik, Fikret. (2022). AgMate: An Optimal Mating Software. Zenodo.
 [https://doi.org/10.5281/zenodo.6635226](https://doi.org/10.5281/zenodo.6635226)
 
+Goda Khushi and Isik, Fikret. 2022. AgMate: an optimal mating software for monoecious species versus other mate pair designing methods on long-term breeding of _Pinus taeda_. agriRxiv, preprint doi: 10.31220/agriRxiv.2022.00145 [https://agrirxiv.org/search-details/?pan=20220262199](https://agrirxiv.org/search-details/?pan=20220262199)
+
