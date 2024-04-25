@@ -20,7 +20,7 @@ AgMate is a multi-functional software able to
 ## ShinyApp: [https://khushigoda.shinyapps.io/AgMate/](https://khushigoda.shinyapps.io/AgMate/)
 
 
-## Please cite [Goda and Isik (2022)](https://doi.org/10.5281/zenodo.6635226) in working papers and published papers that use `AgMate`.
+## Please cite [Goda and Isik (2024)](https://doi.org/10.1093/forsci/fxad052) in working papers and published papers that use `AgMate`.
 
 Khushi Goda, Fikret Isik, Optimal Mating of Pinus taeda L. Under Different Scenarios Using Differential Evolution Algorithm, Forest Science, Volume 70, Issue 2, April 2024, Pages 123–131, [https://doi.org/10.1093/forsci/fxad052](https://doi.org/10.1093/forsci/fxad052)
 
